@@ -1,0 +1,30 @@
+﻿<Window x:Class="MonAgendaWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525" MinWidth="525" MinHeight="350">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="CadetBlue">
+            <TextBlock FontFamily="Calibri" FontSize="40" FontWeight="Heavy" Foreground="White"
+                TextAlignment="Center" VerticalAlignment="Center" >Mon "Smart Agenda"</TextBlock>
+        </Grid>
+        
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Button Name="evenementsButton" Height="40" Width="180" Grid.Row="0" Grid.Column="0" Click="evenementsButton_Click">Evénements</Button>
+            <Button Name="artistesButton" Height="40" Width="180" Grid.Row="0" Grid.Column="1" Click="artistesButton_Click">Artistes</Button>
+            <Button Name="lieuxButton" Height="40" Width="180" Grid.Row="1" Grid.Column="0" Click="lieuxButton_Click">Lieux</Button>
+            <Button Name="evenementsParLieuxButton" Height="40" Width="180" Grid.Row="1" Grid.Column="1" Click="evenementsParLieuxButton_Click">Evénements par lieux</Button>
+        </Grid>
+    </Grid>
+</Window>

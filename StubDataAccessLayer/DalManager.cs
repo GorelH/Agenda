@@ -75,10 +75,12 @@ namespace StubDataAccessLayer
             
             Exposition exposition_a = new Exposition(4, mArtistes, "PEINTURE NEXT GEN", 2.00f, "NEW PEINTURES", 42);
 
-            mLieux.Add(new Lieu(5, "84 baies des cochons", "99999", "Baie des cochons", 999, "CUBA", .2f, "+66666666", "Sierra Maestra"));
+            mLieux.Add(new Lieu(5, "84 Rue du Troufion", "99999", "Baie des cochons", 999, "CUBA", .2f, "+66666666", "Sierra Maestra"));
+            mLieux.Add(new Lieu(6, "37B Rue des Alouettes", "63201", "Baie des singes", 1999, "FRANCE", .2f, "+06321303", "Clermont-Ferrand"));
 
-            mPlannings.Add(new PlanningElement(6, new DateTime(2013, 1, 1), new DateTime(2013, 2, 1), concert, mLieux.ElementAt(0), 66));
-            mPlannings.Add(new PlanningElement(7, new DateTime(2014, 1, 1), new DateTime(2014, 2, 1), concert, mLieux.ElementAt(0), 66));
+            mPlannings.Add(new PlanningElement(7, new DateTime(2013, 1, 1), new DateTime(2013, 2, 1), concert, mLieux.ElementAt(0), 66));
+            mPlannings.Add(new PlanningElement(8, new DateTime(2014, 1, 1), new DateTime(2014, 2, 1), concert, mLieux.ElementAt(1), 66));
+            mPlannings.Add(new PlanningElement(9, new DateTime(2013, 2, 3), new DateTime(2013, 2, 5), exposition_a, mLieux.ElementAt(1), 59));
 
             mUsers.Add("kbogtob", new User("Bogtob", "Karim", "kbogtob", "blabla"));
             mUsers.Add("vfaure", new User("Faure", "Vivien", "vfaure", "bloblo"));

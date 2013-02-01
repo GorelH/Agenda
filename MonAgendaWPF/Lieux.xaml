@@ -1,0 +1,19 @@
+﻿<Window x:Class="MonAgendaWPF.Lieux"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Lieux" Height="300" Width="400" MinWidth="400" MinHeight="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="DarkViolet">
+            <TextBlock FontFamily="Calibri" FontSize="40" FontWeight="Heavy" Foreground="White"
+                TextAlignment="Center" VerticalAlignment="Center" >Lieux</TextBlock>
+        </Grid>
+
+        <StackPanel Grid.Row="1" Name="lieux">
+
+        </StackPanel>
+    </Grid>
+</Window>

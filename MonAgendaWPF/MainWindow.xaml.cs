@@ -14,6 +14,20 @@ using System.Windows.Shapes;
 using BusinessLayer;
 using EntitiesLayer;
 
+/*
+ * recevoir une lsite de planning element (on save)
+ * le dal recoit la liste :
+ * pour chaque ligne
+ *  est ce qu'on ajoute ?
+ *  est ce qu'on supprime ?
+ *  modification ?
+ *  ==>
+ *  on récupère tout les id de la table
+ *  tout les id de la liste
+ *  on fait un diff
+ *  on a ce qu'on doit faire !!!!!!!!!!!!!!!!!!!!
+ */
+
 namespace MonAgendaWPF
 {
     /// <summary>
@@ -24,6 +38,8 @@ namespace MonAgendaWPF
         private Login mLogin = new Login();
         private EvenementDate mEvDate;
         private Artistes mArtistes;
+        private Lieux mLieux;
+        private EvenementsParLieu mEvenementsParLieu;
         private static MainWindow instance = null;
 
         public static MainWindow Instance
@@ -54,6 +70,8 @@ namespace MonAgendaWPF
             if (mLogin != null) mLogin.Close();
             if (mEvDate != null) mEvDate.Close();
             if (mArtistes != null) mArtistes.Close();
+            if (mLieux != null) mLieux.Close();
+            if (mEvenementsParLieu != null) mEvenementsParLieu.Close();
         }
 
         public BusinessManager BM
@@ -93,17 +111,37 @@ namespace MonAgendaWPF
 
         void mArtistes_Closed(object sender, EventArgs e)
         {
-            mArtistes.Close();
+            mArtistes = null;
         }
 
         private void lieuxButton_Click(object sender, RoutedEventArgs e)
         {
+            if (mLieux == null)
+            {
+                mLieux = new Lieux();
+                mLieux.Closed += new EventHandler(mLieux_Closed);
+            }
+            mLieux.Show();
+        }
 
+        void mLieux_Closed(object sender, EventArgs e)
+        {
+            mLieux = null;
         }
 
         private void evenementsParLieuxButton_Click(object sender, RoutedEventArgs e)
         {
+            if (mEvenementsParLieu == null)
+            {
+                mEvenementsParLieu = new EvenementsParLieu();
+                mEvenementsParLieu.Closed += new EventHandler(mEvenementsParLieu_Closed);
+            }
+            mEvenementsParLieu.Show();
+        }
 
+        void mEvenementsParLieu_Closed(object sender, EventArgs e)
+        {
+            mEvenementsParLieu = null;
         }
 
         private void login_Closed(object sender, EventArgs e)

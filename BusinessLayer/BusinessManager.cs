@@ -54,9 +54,15 @@ namespace BusinessLayer
             List<string> listeLieu =
                 (from planningEl in mDalManager.Plannings
                 where planningEl.MonLieu == lieu
-                orderby planningEl.MonEvenement.Titre
-                select planningEl.MonEvenement.Titre).ToList();
+                orderby planningEl.DateFin
+                select planningEl.MonEvenement.Titre + " - " + planningEl.DateDebut.ToShortDateString() + " - " + planningEl.MonLieu.Ville).ToList();
             return listeLieu;
+        }
+
+        public Lieu GetLieuParNom(string nom)
+        {
+            Lieu lieu = mDalManager.Lieux.First(l => nom == l.Nom);
+            return lieu;
         }
 
         public User Connection(string login, string password)

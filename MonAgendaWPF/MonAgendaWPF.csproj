@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{EDDCC617-68E7-4C88-AA8B-801DA1579B85}</ProjectGuid>
+    <ProjectGuid>{9945E198-D963-45EA-BFE9-99F860D900BB}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MonAgendaWPF</RootNamespace>
@@ -15,6 +15,8 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <Utf8Output>true</Utf8Output>
+    <ExpressionBlendVersion>4.0.20621.0</ExpressionBlendVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -36,6 +38,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -55,56 +58,79 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="EvenementsParLieu.xaml.cs">
-      <DependentUpon>EvenementsParLieu.xaml</DependentUpon>
+    <Compile Include="Controls\PlanningElementView.xaml.cs">
+      <DependentUpon>PlanningElementView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Lieux.xaml.cs">
-      <DependentUpon>Lieux.xaml</DependentUpon>
+    <Compile Include="Utils\RelayCommand.cs" />
+    <Compile Include="Utils\ViewModelBase.cs" />
+    <Compile Include="ViewModel\EventManagementViewModel.cs" />
+    <Compile Include="ViewModel\PlanningElementViewModel.cs" />
+    <Compile Include="Configuration\ApplicationConfiguration.cs" />
+    <Compile Include="Configuration\UserConfiguration.cs" />
+    <Compile Include="Configuration\WindowConfiguration.cs" />
+    <Compile Include="Views\Artists.xaml.cs">
+      <SubType>Code</SubType>
     </Compile>
-    <Page Include="Artistes.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="EvenementDate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="EvenementsParLieu.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Login.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <Compile Include="Views\EventManagement.xaml.cs">
+      <DependentUpon>EventManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Events.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\EventsForLocation.xaml.cs">
+      <DependentUpon>EventsForLocation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\AppResources.cs" />
+    <Compile Include="Utils\AbstractWindow.cs" />
+    <Compile Include="Utils\SerializableDictionnary.cs" />
+    <Compile Include="Utils\StorageUtil.cs" />
+    <Compile Include="Views\Locations.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Artistes.xaml.cs">
-      <DependentUpon>Artistes.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="EvenementDate.xaml.cs">
-      <DependentUpon>EvenementDate.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Login.xaml.cs">
-      <DependentUpon>Login.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="Lieux.xaml">
+    <Page Include="Controls\PlanningElementView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Artists.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\EventManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Events.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EventsForLocation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Locations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Login.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Preferences.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -130,14 +156,15 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj">
-      <Project>{DB29F04D-043E-4C08-9AC1-6D0BDE71B3CA}</Project>
+      <Project>{1870359E-D18B-48E7-A2DD-D7077F375E01}</Project>
       <Name>BusinessLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\EntitiesLayer\EntitiesLayer.csproj">
-      <Project>{7F041BBD-42F7-41D5-A6B2-780D4CF0BE72}</Project>
+      <Project>{BB86A915-F310-4D87-8B15-CDDCE9EA48A2}</Project>
       <Name>EntitiesLayer</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

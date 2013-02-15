@@ -7,59 +7,124 @@ namespace EntitiesLayer
 {
     public class PlanningElement
     {
-        #region Membres
-        private DateTime mDateDebut;
-        private DateTime mDateFin;
-        private int mGUID;
-        private Evenement mMonEvenement;
-        private Lieu mMonLieu;
-        private int mNombrePlacesReservees;
-        #endregion
 
-        public DateTime DateFin
+        /// <summary>
+        /// GUID
+        /// </summary>
+        private Guid _guid;
+
+        /// <summary>
+        /// L'événement correspondant.
+        /// </summary>
+        private Evenement _monEvenement;
+
+        /// <summary>
+        /// Le lieu de l'événement.
+        /// </summary>
+        private Lieu _monLieu;
+
+        /// <summary>
+        /// La date (heure) de début.
+        /// </summary>
+        private DateTime _dateDebut;
+
+        /// <summary>
+        /// La date (heure) de fin.
+        /// </summary>
+        private DateTime _dateFin;
+
+        /// <summary>
+        /// Le nombre de place réservées.
+        /// </summary>
+        private int _nombrePlacesReserves;
+
+        public PlanningElement()
         {
-            get { return mDateFin; }
-            set { mDateFin = value; }
+            MonEvenement = new Concert();
+            MonLieu = new Lieu();
         }
 
-        public int GUID
+        /// <summary>
+        /// Constructeur complet.
+        /// </summary>
+        /// <param name="e">L'événement</param>
+        /// <param name="location">Le lieu</param>
+        /// <param name="begin">L'heure de début</param>
+        /// <param name="end">L'heure de fin</param>
+        /// <param name="reserved">Le nombre de place réservées.</param>
+        public PlanningElement(Evenement e, Lieu location, DateTime begin, DateTime end, int reserved)
         {
-            get { return mGUID; }
-            set { mGUID = value; }
+            MonEvenement = e;
+            MonLieu = location;
+            DateDebut = begin;
+            DateFin = end;
+            NombrePlacesreserves = reserved;
         }
 
+        /// <summary>
+        /// Propriété de l'événement
+        /// </summary>
+        public Guid Guid
+        {
+            get { return _guid; }
+            set { _guid = value; }
+        }
+
+        /// <summary>
+        /// Propriété de l'événement
+        /// </summary>
         public Evenement MonEvenement
         {
-            get { return mMonEvenement; }
-            set { mMonEvenement = value; }
+            get { return _monEvenement; }
+            set { _monEvenement = value; }
         }
 
+        /// <summary>
+        /// Propriété de la location
+        /// </summary>
         public Lieu MonLieu
         {
-            get { return mMonLieu; }
-            set { mMonLieu = value; }
+            get { return _monLieu; }
+            set { _monLieu = value; }
         }
 
-        public int NombrePlacesReservees
-        {
-            get { return mNombrePlacesReservees; }
-            set { mNombrePlacesReservees = value; }
-        }
-
+        /// <summary>
+        /// Propriété de l'heure de début.
+        /// </summary>
         public DateTime DateDebut
         {
-            get { return mDateDebut; }
-            set { mDateDebut = value; }
+            get { return _dateDebut; }
+            set { _dateDebut = value; }
         }
 
-        public PlanningElement(int guid, DateTime dateDebut, DateTime dateFin, Evenement monEvenement, Lieu monLieu, int nombrePlacesReservees)
+        /// <summary>
+        /// Propriété de l'heure de fin.
+        /// </summary>
+        public DateTime DateFin
         {
-            mGUID = guid;
-            mDateDebut = dateDebut; 
-            mDateFin = dateFin;
-            mMonEvenement = monEvenement;
-            mMonLieu = monLieu;
-            mNombrePlacesReservees = nombrePlacesReservees;
+            get { return _dateFin; }
+            set { _dateFin = value; }
+        }
+
+        /// <summary>
+        /// Propriété du nombre de place réservées.
+        /// </summary>
+        public int NombrePlacesreserves
+        {
+            get { return _nombrePlacesReserves; }
+            set { _nombrePlacesReserves = value; }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append(MonEvenement.Titre);
+            if (!String.IsNullOrEmpty(MonEvenement.Description))
+                sb.Append(" (").Append(MonEvenement.Description).Append(") ");
+            sb.Append(" - ").Append(MonLieu.Nom).Append(" - ").Append(DateDebut.Date.ToString("dd/mm/yyyy"));
+
+            return sb.ToString();
         }
     }
 }

@@ -40,6 +40,7 @@ namespace MonAgendaWPF
         private Artistes mArtistes;
         private Lieux mLieux;
         private EvenementsParLieu mEvenementsParLieu;
+        private GestionEvenementView mGestionEventView;
         private static MainWindow instance = null;
 
         public static MainWindow Instance
@@ -72,6 +73,7 @@ namespace MonAgendaWPF
             if (mArtistes != null) mArtistes.Close();
             if (mLieux != null) mLieux.Close();
             if (mEvenementsParLieu != null) mEvenementsParLieu.Close();
+            if (mGestionEventView != null) mGestionEventView.Close();
         }
 
         public BusinessManager BM
@@ -91,6 +93,7 @@ namespace MonAgendaWPF
                 mEvDate = new EvenementDate();
                 mEvDate.Closed += new EventHandler(mEvDate_Closed);
             }
+            mEvDate.Hide();
             mEvDate.Show();
         }
 
@@ -106,6 +109,7 @@ namespace MonAgendaWPF
                 mArtistes = new Artistes();
                 mArtistes.Closed += new EventHandler(mArtistes_Closed);
             }
+            mArtistes.Hide();
             mArtistes.Show();
         }
 
@@ -121,6 +125,7 @@ namespace MonAgendaWPF
                 mLieux = new Lieux();
                 mLieux.Closed += new EventHandler(mLieux_Closed);
             }
+            mLieux.Hide();
             mLieux.Show();
         }
 
@@ -136,6 +141,7 @@ namespace MonAgendaWPF
                 mEvenementsParLieu = new EvenementsParLieu();
                 mEvenementsParLieu.Closed += new EventHandler(mEvenementsParLieu_Closed);
             }
+            mEvenementsParLieu.Hide();
             mEvenementsParLieu.Show();
         }
 
@@ -154,6 +160,22 @@ namespace MonAgendaWPF
             {
                 this.Show();
             }
+        }
+
+        private void gestion_Click(object sender, RoutedEventArgs e)
+        {
+            if (mGestionEventView == null)
+            {
+                mGestionEventView = new GestionEvenementView();
+                mGestionEventView.Closed += new EventHandler(mGestionEventView_Closed);
+            }
+            mGestionEventView.Hide();
+            mGestionEventView.Show();
+        }
+
+        void mGestionEventView_Closed(object sender, EventArgs e)
+        {
+            mGestionEventView = null;
         }
     }
 }

@@ -26,6 +26,7 @@ namespace MonAgendaWPF
 
         void Lieux_Activated(object sender, EventArgs e)
         {
+            lieux.Children.Clear();
             foreach (string ar in MainWindow.Instance.BM.AfficherLieuEvenementsProgrammes())
             {
                 addLieu(ar);

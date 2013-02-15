@@ -10,36 +10,37 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using EntitiesLayer;
+
 namespace MonAgendaWPF
 {
     /// <summary>
-    /// Logique d'interaction pour EvenementDate.xaml
+    /// Logique d'interaction pour Artistes.xaml
     /// </summary>
-    public partial class EvenementDate : Window
+    public partial class Artistes : Window
     {
-        public EvenementDate()
+        public Artistes()
         {
             InitializeComponent();
-            this.Activated += new EventHandler(EvenementDate_StateChanged);
+            this.Activated += new EventHandler(Artistes_Activated);
         }
 
-        void EvenementDate_StateChanged(object sender, EventArgs e)
+        void Artistes_Activated(object sender, EventArgs e)
         {
-            foreach (string ev in MainWindow.Instance.BM.AfficherEvenements())
+            artistes.Children.Clear();
+            foreach (string ar in MainWindow.Instance.BM.AfficherArtistes())
             {
-                addEvenement(ev);
+                addArtiste(ar);
             }
         }
 
-        private void addEvenement(string ev)
+        private void addArtiste(string ar)
         {
-            if (ev == null)
+            if (ar == null)
                 throw new ArgumentNullException();
 
             TextBlock t = new TextBlock();
-            t.Text = ev;
-            evenements.Children.Add(t);
+            t.Text = ar;
+            artistes.Children.Add(t);
         }
     }
 }

@@ -5,38 +5,38 @@ using System.Text;
 
 namespace EntitiesLayer
 {
-    class Utilisateur
+    public class Utilisateur
     {
-        #region Membres
-        private string mNom;
-
-        public string Nom
-        {
-            get { return mNom; }
-            set { mNom = value; }
-        }
-        private string mPrenom;
-
-        public string Prenom
-        {
-            get { return mPrenom; }
-            set { mPrenom = value; }
-        }
-        private string mLogin;
+        /// <summary>
+        /// Login de l'utilisateur
+        /// </summary>
+        private string _login;
+        /// <summary>
+        /// Mot de Passe de l'utilisateur
+        /// </summary>
+        private string _password;
 
         public string Login
         {
-            get { return mLogin; }
-            set { mLogin = value; }
+            get { return _login; }
+            set { _login = value; }
         }
-        private string mPassword;
 
         public string Password
         {
-            get { return mPassword; }
-            set { mPassword = value; }
+            get { return _password; }
+            set { _password = value; }
         }
-        #endregion
 
+        /// <summary>
+        /// Constructeur
+        /// </summary>
+        /// <param name="login">Login de l'utilisateur</param>
+        /// <param name="password">Mot de passe</param>
+        public Utilisateur(string login, string password)
+        {
+            Password = password;
+            Login = login;
+        }
     }
 }

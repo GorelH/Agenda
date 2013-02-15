@@ -5,66 +5,111 @@ using System.Text;
 
 namespace EntitiesLayer
 {
+    /// <summary>
+    /// Evenement
+    /// </summary>
     public abstract class Evenement
     {
-        #region
-        private List<Artiste> mArtistes = new List<Artiste>();
-
-        public List<Artiste> Artistes
-        {
-            get { return mArtistes; }
-            set { mArtistes = value; }
-        }
-        private string mDescription;
+        /// <summary>
+        /// Liste des artistes
+        /// </summary>
+        private IEnumerable<Artiste> _artistes;
+        /// <summary>
+        /// Description de l'événement
+        /// </summary>
+        private string _description;
+        /// <summary>
+        /// Titre de l'événement
+        /// </summary>
+        private string _Titre;
+        /// <summary>
+        /// ID
+        /// </summary>
+        private Guid _guid;
+        /// <summary>
+        /// Tarif de l'événement
+        /// </summary>
+        private float _tarif;
 
         public string Description
         {
-            get { return mDescription; }
-            set { mDescription = value; }
+            get { return _description; }
+            set { _description = value; }
         }
-        private int mGUID;
 
-        public int GUID
+        public Guid Guid
         {
-            get { return mGUID; }
-            set { mGUID = value; }
+            get { return _guid; }
+            set { _guid = value; }
         }
-        private float mTarif;
 
         public float Tarif
         {
-            get { return mTarif; }
-            set { mTarif = value; }
+            get { return _tarif; }
+            set { _tarif = value; }
         }
-        private string mTitre;
 
         public string Titre
         {
-            get { return mTitre; }
-            set { mTitre = value; }
+            get { return _Titre; }
+            set { _Titre = value; }
         }
-        #endregion
 
-        public abstract float CalculerTarif();
-
-        public Evenement(int guid, List<Artiste> artistes, string description, float tarif, string titre)
+        public IEnumerable<Artiste> Artistes
         {
-            mGUID = guid;
-            mArtistes = artistes;
-            mDescription = description;
-            mTarif = tarif;
-            mTitre = titre;
+            get { return _artistes; }
+            set { _artistes = value; }
         }
 
+        /// <summary>
+        /// Constructeur par défaut
+        /// </summary>
+        public Evenement()
+        { 
+        }
+
+        /// <summary>
+        /// Constructeur 
+        /// </summary>
+        /// <param name="titre">Titre de l'événement</param>
+        /// <param name="description">Description de l'événement</param>
+        /// <param name="tarif">Tarif de l'événement</param>
+        /// <param name="guid">ID</param>
+        /// <param name="artistes">Liste des artistes</param>
+        public Evenement(string titre, string description, float tarif, Guid guid, IEnumerable<Artiste> artistes)
+        {
+            Titre = titre;
+            Description = description;
+            Tarif = tarif;
+            Artistes = artistes;
+            this.Guid = guid;
+        }
+
+        /// <summary>
+        /// Calcul du tarrif
+        /// </summary>
+        /// <returns>Le tarif</returns>
+        public virtual float CalculerTarif()
+        {
+            return Tarif;
+        }
+        
+        /// <summary>
+        /// To string
+        /// </summary>
+        /// <returns>Description de l'événement</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.Append(mGUID).Append(" ").Append(mDescription).Append(mTarif).Append(" ").Append(mTitre).Append("\nArtistes présents : ");
-            foreach (Artiste artiste in mArtistes)
-            {
-                sb.Append(mArtistes).Append("\n");
-            }
+            sb.AppendLine("--- Evenement ---");
+            sb.Append("Description : ").AppendLine(Description);
+            sb.Append("Titre : ").AppendLine(Titre);
+            sb.Append("Tarif : ").AppendLine(Tarif.ToString());
+            sb.Append("GUID : ").AppendLine(Guid.ToString());
+
+            foreach(Artiste artiste in _artistes)
+                sb.Append("Artiste : ").AppendLine(artiste.Nom);
 
             return sb.ToString();
         }

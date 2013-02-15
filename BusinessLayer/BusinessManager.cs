@@ -2,87 +2,157 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using StubDataAccessLayer;
 using EntitiesLayer;
-
+//using StubDataAccessLayer;
+using DataAccessLayer;
+using Commun;
 
 namespace BusinessLayer
 {
+    /// <summary>
+    /// Business layer
+    /// </summary>
     public class BusinessManager
     {
-        #region Membres
-        DalManager mDalManager = new DalManager();
-        #endregion
+        /// <summary>
+        /// DataAcessLayer
+        /// </summary>
+        private DALManager _DALManager;
 
+        public DALManager DALManager
+        {
+            get { return _DALManager; }
+            set { _DALManager = value; }
+        }
+
+        /// <summary>
+        /// Constructeur par défaut
+        /// </summary>
         public BusinessManager()
         {
+            DALManager.PROVIDER = DALProvider.SQLSERVER;
+            _DALManager = DALManager.Instance;
         }
 
-        public List<Lieu> GetLieu()
+        /// <summary>
+        /// Retourne la liste des événements ordonnés par date.
+        /// </summary>
+        /// <returns>La liste des événements</returns>
+        public IEnumerable<PlanningElement> EvenementsClassesDate()
         {
-            return mDalManager.Lieux;
+            return (from plan in DALManager.GetAllPlannings()
+                    orderby plan.DateDebut
+                    select plan).ToList();
         }
 
-        public List<string> AfficherEvenements()
+        /// <summary>
+        /// Retourne la liste des artistes triés par nom.
+        /// </summary>
+        /// <returns>La liste des artistes.</returns>
+        public IEnumerable<String> ArtistesAssocies()
         {
-            List<string> requete = new List<string>();
-            requete = (from planningEl in mDalManager.Plannings
-                                    orderby planningEl.DateDebut
-                                    select planningEl.MonEvenement.Description + " - " + planningEl.DateDebut.ToString() + " - " +planningEl.MonLieu.Nom).ToList();
-            return requete;
+
+            IEnumerable<String> list = new List<String>();
+            ICollection<Evenement> events = DALManager.GetAllEvenements();
+
+            list = (from e in events from a in e.Artistes orderby a.Nom select a.Nom).Distinct();
+
+            return list;
+        }
+
+        /// <summary>
+        /// Retourne la liste des lieux auquels sont ratéchés un ou plusieurs événements.
+        /// </summary>
+        /// <returns>La liste de lieux.</returns>
+        public IEnumerable<Lieu> LieuxUtilises()
+        {
+            IEnumerable<Lieu> list = new List<Lieu>();
+            ICollection<PlanningElement> events = DALManager.GetAllPlannings();
+
+            list = (from e in events orderby e.MonLieu.Nom select e.MonLieu).Distinct();
+
+            return list;
+        }
+
+        /// <summary>
+        /// Retourne la liste des événements pour un lieu précis ordonnés par date.
+        /// </summary>
+        /// <param name="location">Le lieu de recherche.</param>
+        /// <returns>La liste.</returns>
+        public IEnumerable<String> EvenementsPourLieu(String lieu)
+        {
+
+            IEnumerable<String> list = new List<String>();
+            ICollection<PlanningElement> events = DALManager.GetAllPlannings();
+
+            list = (from e in events where e.MonLieu.Nom == lieu orderby e.DateDebut select e.MonEvenement.Titre).Distinct();
+
+            return list;
 
         }
 
-        public List<string> AfficherArtistes()
+        /// <summary>
+        /// Valide la connexion utilisateur
+        /// </summary>
+        /// <param name="login">Login</param>
+        /// <param name="password">Password (sha1)</param>
+        /// <returns></returns>
+        public bool CheckUserConnection(string login, string password)
         {
-            List<string> requete = new List<string>();
-            requete = (from artiste in mDalManager.Artistes
-                       orderby artiste.Nom
-                       select artiste.Prenom + " " + artiste.Nom).ToList();
-            return requete;
-        }
+#if DEBUG
+            return true;
+#endif
+            bool value = false;
 
-        public List<string> AfficherLieuEvenementsProgrammes()
-        {
-            List<string> listeLieu = (from planingEl in mDalManager.Plannings
-                                     select planingEl.MonLieu.Nom).Distinct().ToList();
-            return listeLieu;
-        }
-
-        public List<string> AfficherEvenementsLieux(Lieu lieu)
-        {
-            List<string> listeLieu =
-                (from planningEl in mDalManager.Plannings
-                where planningEl.MonLieu == lieu
-                orderby planningEl.DateFin
-                select planningEl.MonEvenement.Titre + " - " + planningEl.DateDebut.ToShortDateString() + " - " + planningEl.MonLieu.Ville).ToList();
-            return listeLieu;
-        }
-
-        public Lieu GetLieuParNom(string nom)
-        {
-            Lieu lieu = mDalManager.Lieux.First(l => nom == l.Nom);
-            return lieu;
-        }
-
-        public User Connection(string login, string password)
-        {
             try
             {
-                User u = mDalManager.getUserByLogin(login);
-                if (u.Password == password)
-                {
-                    return u;
-                }
-                else
-                {
-                    return null;
-                }
+                Utilisateur user = DALManager.GetUtilisateurByLogin(login);
+
+                if (user != null && user.Password == password)
+                    value = true;
             }
-            catch (UserNotFoundException)
+            catch (Exception)
             {
-                return null;
+                value = false;
             }
+
+            return value;
+        }
+
+        /// <summary>
+        /// Recherche le premier lieu utilisé
+        /// </summary>
+        /// <returns>Premier lieu utilisé</returns>
+        public Guid GetFirstPlaceGuid()
+        {
+            return LieuxUtilises().First().Guid;
+        }
+
+        /// <summary>
+        /// Supprime un planning
+        /// </summary>
+        /// <param name="element">Planning a supprimer</param>
+        public void RemovePlanning(PlanningElement element)
+        {
+            DALManager.RemovePlanning(element);
+        }
+
+        /// <summary>
+        /// Ajoute un planning
+        /// </summary>
+        /// <param name="element">Planning a ajouter</param>
+        public void AddPlanning(PlanningElement element)
+        {
+            DALManager.AddPlanning(element);
+        }
+
+        /// <summary>
+        /// Met la base à jour
+        /// </summary>
+        /// <param name="elements">Elements à mettre à jour</param>
+        public void Update(List<PlanningElement> elements)
+        {
+            DALManager.Update(elements);
         }
     }
 }

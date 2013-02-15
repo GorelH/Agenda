@@ -7,95 +7,177 @@ namespace EntitiesLayer
 {
     public class Lieu
     {
-        #region Membres
-        private string mAdresse;
-        private string mCodePostal;
-        private int mGUID;
-        private string mNom;
-        private int mNombrePlaces;
-        private string mPays;
-        private double mPourcentageCommission;
-        private string mTéléphone;
-        private string mVille;
-        #endregion
 
-        public int GUID
+        /// <summary>
+        /// GUID
+        /// </summary>
+        private Guid _guid;
+
+        /// <summary>
+        /// Le nom du lieu.
+        /// </summary>
+        private string _nom;
+
+        /// <summary>
+        /// L'adresse du lieu.
+        /// </summary>
+        private string _adresse;
+
+        /// <summary>
+        /// Le Code postal.
+        /// </summary>
+        private string _codePostal;
+
+        /// <summary>
+        /// La ville.
+        /// </summary>
+        private string _ville;
+
+        /// <summary>
+        /// La description du lieu.
+        /// </summary>
+        private string _description;
+
+        /// <summary>
+        /// Le nombre place maximum du lieu.
+        /// </summary>
+        private int _nombrePlacesTotal;
+
+        /// <summary>
+        /// Le site internet du lieu.
+        /// </summary>
+        private string _siteInternet;
+
+        /// <summary>
+        /// Pourcentage commission.
+        /// </summary>
+        private int _pourcentageCommission;
+
+        /// <summary>
+        /// Téléphone.
+        /// </summary>
+        private string _telephone;
+
+        public Lieu()
         {
-            get { return mGUID; }
-            set { mGUID = value; }
+
         }
 
+        /// <summary>
+        /// Constructeur complet.
+        /// </summary>
+        /// <param name="nom">Le nom.</param>
+        /// <param name="adresse">L'adresse.</param>
+        /// <param name="description">La description.</param>
+        /// <param name="nbPlace">Le nombre de place maximum.</param>
+        /// <param name="site">Le site internet.</param>
+        public Lieu(string guid, string nom, string adresse, string description, int nbPlace, string site)
+        {
+            this.Guid = new Guid(guid);
+            Nom = nom;
+            Adresse = adresse;
+            Description = description;
+            NombrePlacesTotal = nbPlace;
+            SiteInternet = site;
+        }
+
+        public Guid Guid
+        {
+            get { return _guid; }
+            set { _guid = value; }
+        }
+
+        public string CodePostal1
+        {
+            get { return _codePostal; }
+            set { _codePostal = value; }
+        }
+
+        /// <summary>
+        /// Propriété du nom.
+        /// </summary>
         public string Nom
         {
-            get { return mNom; }
-            set { mNom = value; }
+            get { return _nom; }
+            set { _nom = value; }
         }
 
-        public int NombrePlaces
+        /// <summary>
+        /// Propriété de l'adresse.
+        /// </summary>
+        public string Adresse
         {
-            get { return mNombrePlaces; }
-            set { mNombrePlaces = value; }
+            get { return _adresse; }
+            set { _adresse = value; }
         }
 
-        public string Pays
+        /// <summary>
+        /// Propriété de la description.
+        /// </summary>
+        public string Description
         {
-            get { return mPays; }
-            set { mPays = value; }
-        }
-
-        public double PourcentageCommission
-        {
-            get { return mPourcentageCommission; }
-            set { mPourcentageCommission = value; }
-        }
-
-        public string Téléphone
-        {
-            get { return mTéléphone; }
-            set { mTéléphone = value; }
+            get { return _description; }
+            set { _description = value; }
         }
 
         public string Ville
         {
-            get { return mVille; }
-            set { mVille = value; }
+            get { return _ville; }
+            set { _ville = value; }
         }
-
-        public string Adresse
+        
+        /// <summary>
+        /// Propriété du nombre de place.
+        /// </summary>
+        public int NombrePlacesTotal
         {
-            get { return mAdresse; }
-            set { mAdresse = value; }
+            get { return _nombrePlacesTotal; }
+            set { _nombrePlacesTotal = value; }
         }
 
-        public string CodePostal
+        public int PourcentageCommission
         {
-            get { return mCodePostal; }
-            set { mCodePostal = value; }
+            get { return _pourcentageCommission; }
+            set { _pourcentageCommission = value; }
         }
 
-        public Lieu(int guid, string adresse, string codePostal, string nom, int nombrePlaces, string pays, double pourcentageCommission, 
-            string téléphone, string ville)
+        /// <summary>
+        /// Propriété du site internet.
+        /// </summary>
+        public string SiteInternet
         {
-            mGUID = guid;
-            mAdresse = adresse;
-            mCodePostal = codePostal;
-            mNom = nom;
-            mNombrePlaces = nombrePlaces;
-            mPays = pays;
-            mPourcentageCommission = pourcentageCommission;
-            mTéléphone = téléphone;
-            mVille = ville;
+            get { return _siteInternet; }
+            set { _siteInternet = value; }
         }
 
+        /// <summary>
+        /// To string
+        /// </summary>
+        /// <returns>Description du Lieu</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-
-            sb.Append(mGUID).Append(" ").Append(mNom).Append(" ").Append(mNombrePlaces).Append(" ").Append(mPourcentageCommission).Append(" ")
-                .Append(mNombrePlaces).Append(" ").Append(" ").Append(mAdresse).Append(" ").Append(mCodePostal).Append(" ").Append(mVille)
-                .Append(" ").Append(mPays).Append(" ").Append(mTéléphone);
-
+            sb.Append(Nom);
             return sb.ToString();
+        }
+
+        public string Telephone
+        {
+            get { return _telephone; }
+            set { _telephone = value; }
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Lieu)
+                return Nom.Equals(((Lieu)obj).Nom);
+            else
+                return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return Nom.GetHashCode();
         }
     }
 }

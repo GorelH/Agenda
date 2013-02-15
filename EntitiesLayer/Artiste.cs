@@ -7,97 +7,82 @@ namespace EntitiesLayer
 {
     public class Artiste
     {
-        #region Membres
-        private DateTime mDateNaissance;
-        private int mGUID;
-        private string mNom;
-        private string mPrenom;
-        #endregion
 
         /// <summary>
-        /// Date de naissance de l'artiste
+        /// Date de naissance
         /// </summary>
-        public DateTime DateNaissance
-        {
-            get
-            {
-                return mDateNaissance;
-            }
-            set
-            {
-                mDateNaissance = value;
-            }
-        }
-
+        private DateTime _dateNaissance;
         /// <summary>
-        /// Global user identifier
+        /// prénom de l'artiste
         /// </summary>
-        public int GUID
-        {
-            get
-            {
-                return mGUID;
-            }
-            set
-            {
-                mGUID = value;
-            }
-        }
-
+        private string _prenom;
         /// <summary>
         /// Nom de l'artiste
         /// </summary>
+        private string _nom;
+        /// <summary>
+        /// ID de l'artiste
+        /// </summary>
+        private int _guid;
+
+        public DateTime DateNaissance
+        {
+            get { return _dateNaissance; }
+            set { _dateNaissance = value; }
+        }
+        
+
+        public int Guid
+        {
+            get { return _guid; }
+            set { _guid = value; }
+        }
+        
+
         public string Nom
         {
-            get
-            {
-                return mNom;
-            }
-            set
-            {
-                mNom = value;
-            }
+            get { return _nom; }
+            set { _nom = value; }
         }
+        
 
-        /// <summary>
-        /// Prénom de l'artiste
-        /// </summary>
         public string Prenom
         {
-            get
-            {
-                return mPrenom;
-            }
-            set
-            {
-                mPrenom = value;
-            }
+            get { return _prenom; }
+            set { _prenom = value; }
         }
 
         /// <summary>
-        /// Constructeur de l'artiste
+        /// Constructeur par défaut
         /// </summary>
-        /// <param name="GUID">Global User Identifier de l'artiste</param>
-        /// <param name="nom">Nom de l'artiste</param>
-        /// <param name="prenom">Prénom de l'artiste</param>
-        /// <param name="dateNaissance">Date de naissance de l'artiste</param>
-        public Artiste(int GUID, string nom, string prenom, DateTime dateNaissance)
+        public Artiste()
         {
-            mGUID = GUID;
-            mNom = nom;
-            mPrenom = prenom;
-            mDateNaissance = dateNaissance;
         }
 
         /// <summary>
-        /// Sérialise l'artiste en chaîne de caractère
+        /// Constructeur
         /// </summary>
-        /// <returns>Artiste sérialisé</returns>
+        /// <param name="nom">Nom de l'artiste</param>
+        /// <param name="prenom">prénom de l'artiste</param>
+        /// <param name="dateNaissance">Date de naissance</param>
+        /// <param name="guid">ID</param>
+        public Artiste(string nom, string prenom, DateTime dateNaissance, int guid)
+        {
+            Nom = nom;
+            Prenom = prenom;
+            DateNaissance = dateNaissance;
+            Guid = guid;
+        }
+
+        /// <summary>
+        /// To String
+        /// </summary>
+        /// <returns>Description de l'artiste</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.Append(mGUID).Append(" ").Append(mNom).Append(" ").Append(mPrenom).Append(" ").Append(mDateNaissance);
+            sb.Append(Prenom).Append(" ").Append(Nom);
 
             return sb.ToString();
         }

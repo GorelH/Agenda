@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="" title="root">
+    <siteMapNode url="Acceuil.aspx" title="Acceuil"  description="Acceuil du site"/>
+    <siteMapNode url="Recherche.aspx" title="Recherche" description="Recherche un artiste ou un événement"/>
+    <siteMapNode url="Panier.aspx" title="Panier" description="Afficher le panier et valider une commande" />
+  </siteMapNode>
+</siteMap>

@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayerUnitTests", "M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commun", "Commun\Commun.csproj", "{FDA3413D-FCC7-4C6D-A688-AB1A9720E822}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSmartAgenda", "WebSmartAgenda\WebSmartAgenda.csproj", "{3D4D84BA-700A-4109-AF72-A0E89CBD83BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +109,16 @@ Global
 		{FDA3413D-FCC7-4C6D-A688-AB1A9720E822}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{FDA3413D-FCC7-4C6D-A688-AB1A9720E822}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{FDA3413D-FCC7-4C6D-A688-AB1A9720E822}.Release|x86.ActiveCfg = Release|Any CPU
+		{3D4D84BA-700A-4109-AF72-A0E89CBD83BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D4D84BA-700A-4109-AF72-A0E89CBD83BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D4D84BA-700A-4109-AF72-A0E89CBD83BB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3D4D84BA-700A-4109-AF72-A0E89CBD83BB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3D4D84BA-700A-4109-AF72-A0E89CBD83BB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3D4D84BA-700A-4109-AF72-A0E89CBD83BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D4D84BA-700A-4109-AF72-A0E89CBD83BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D4D84BA-700A-4109-AF72-A0E89CBD83BB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3D4D84BA-700A-4109-AF72-A0E89CBD83BB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3D4D84BA-700A-4109-AF72-A0E89CBD83BB}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

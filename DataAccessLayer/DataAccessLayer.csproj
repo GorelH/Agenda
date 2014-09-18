@@ -57,7 +57,16 @@
   <ItemGroup>
     <Compile Include="DALManager.cs" />
     <Compile Include="DalSQLServer.cs" />
+    <Compile Include="EventsAgendaDataSet.cs">
+      <DependentUpon>EventsAgendaDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="EventsAgendaDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EventsAgendaDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="EventsAgendaDataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EventsAgendaDataSet.xsd</DependentUpon>
@@ -108,23 +117,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="EventsAgenda.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="EventsAgenda_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>EventsAgenda.mdf</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="EventsAgendaDataSet.xsc">
       <DependentUpon>EventsAgendaDataSet.xsd</DependentUpon>
     </None>
     <None Include="EventsAgendaDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>EventsAgendaDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>EventsAgendaDataSet1.Designer.cs</LastGenOutput>
     </None>
     <None Include="EventsAgendaDataSet.xss">
       <DependentUpon>EventsAgendaDataSet.xsd</DependentUpon>

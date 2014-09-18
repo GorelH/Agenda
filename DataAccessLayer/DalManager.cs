@@ -29,7 +29,7 @@ namespace DataAccessLayer
         /// The connexion string
         /// </summary>
         //private String _connexionString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\Drusy\Dropbox\ISIMA\ZZ2\ServiceReseau\ISIMA_TP_.NET\MonAgenda\DataAccessLayer\EventsAgenda.mdf;Integrated Security=True";
-        private String _connexionString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=DataAccessLayer\EventsAgenda.mdf;Integrated Security=True";
+        private String _connexionString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\Halid\Documents\GitHub\Agenda\DataAccessLayer\EventsAgenda.mdf; Database=EventsAgenda;Integrated Security=True";
 
         public static DALProvider PROVIDER;
 

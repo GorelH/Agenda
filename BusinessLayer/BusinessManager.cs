@@ -77,7 +77,7 @@ namespace BusinessLayer
         /// <summary>
         /// Retourne la liste des événements pour un lieu précis ordonnés par date.
         /// </summary>
-        /// <param name="location">Le lieu de recherche.</param>
+        /// <param name="lieu"></param>
         /// <returns>La liste.</returns>
         public IEnumerable<String> EvenementsPourLieu(String lieu)
         {

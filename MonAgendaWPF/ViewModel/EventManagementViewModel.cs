@@ -34,8 +34,7 @@ namespace MonAgendaWPF.ViewModel
 
         private PlanningElementViewModel _modelElement;
 
-        public PlanningElementViewModel ModelElement
-        {
+        public PlanningElementViewModel ModelElement {
             get { return _modelElement; }
             set 
             { 
@@ -98,7 +97,7 @@ namespace MonAgendaWPF.ViewModel
 
         public void AddEvent()
         {
-            PlanningElement pe = new PlanningElement(new Concert("Default", "Default", 0f, Guid.NewGuid(), null, 0, 0, null), new Lieu(App.BusinessManager.GetFirstPlaceGuid().ToString(), "Default", "", "", 0, ""), DateTime.Now, DateTime.Now, 0);
+            var pe = new PlanningElement(new Concert("Default", "Default", 0f, Guid.NewGuid(), null, 0, 0, null), new Lieu(App.BusinessManager.GetFirstPlaceGuid().ToString(), "Default", "", "", 0, ""), DateTime.Now, DateTime.Now, 0);
             
             Events.Add(new PlanningElementViewModel(pe));
             App.BusinessManager.AddPlanning(pe);
@@ -112,8 +111,8 @@ namespace MonAgendaWPF.ViewModel
                 if (_validateEventCommand == null)
                 {
                     _validateEventCommand = new RelayCommand(
-                        () => this.ValidateEvent(),
-                        () => this.CanValidateEvent()
+                        this.ValidateEvent,
+                        CanValidateEvent
                     );
                 }
                 return _validateEventCommand;

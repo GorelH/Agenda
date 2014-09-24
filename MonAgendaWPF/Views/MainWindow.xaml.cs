@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using MonAgendaWPF.Utils;
 using MonAgendaWPF.Configuration;
 using MonAgendaWPF.Resources;
+using MonAgendaWPF.Views;
 
 namespace MonAgendaWPF
 {

@@ -1,8 +1,10 @@
-﻿<src:AbstractWindow x:Class="MonAgendaWPF.EventManagement"
+﻿<utils:AbstractWindow x:Class="MonAgendaWPF.Views.EventManagement"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:src="clr-namespace:MonAgendaWPF"
-        Title="EventManagement" Height="485.075" Width="773.134" xmlns:my="clr-namespace:MonAgendaWPF.Controls" Loaded="AbstractWindow_Loaded">
+        Title="EventManagement" Height="485.075" Width="773.134" xmlns:my="clr-namespace:MonAgendaWPF.Controls"
+                    xmlns:utils="clr-namespace:MonAgendaWPF.Utils"
+                    Loaded="AbstractWindow_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -42,4 +44,4 @@
         <my:PlanningElementView Margin="10, 10, 10, 10" DataContext="{Binding ModelElement}" Grid.Column="1" x:Name="ModelElement" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
         <Button Command="{Binding ValidateEventCommand}" Grid.Column="2" Grid.Row="2" Content="Valider" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="30" />
     </Grid>
-</src:AbstractWindow>
+</utils:AbstractWindow>

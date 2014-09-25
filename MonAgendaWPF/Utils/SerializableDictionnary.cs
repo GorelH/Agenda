@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Runtime.Serialization;
 using System.Xml;
+using System.Xml.Schema;
 using System.Xml.Serialization;
 
 namespace MonAgendaWPF.Utils
@@ -56,13 +57,13 @@ namespace MonAgendaWPF.Utils
             for (int i = 0; i < itemCount; i++)
             {
                 KeyValuePair<TKey, TVal> kvp = (KeyValuePair<TKey, TVal>)info.GetValue(String.Format("Item{0}", i), typeof(KeyValuePair<TKey, TVal>));
-                this.Add(kvp.Key, kvp.Value);
+                Add(kvp.Key, kvp.Value);
             }
         }
 
         void ISerializable.GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("ItemCount", this.Count);
+            info.AddValue("ItemCount", Count);
             int itemIdx = 0;
             foreach (KeyValuePair<TKey, TVal> kvp in this)
             {
@@ -74,7 +75,7 @@ namespace MonAgendaWPF.Utils
         #endregion
         #region IXmlSerializable Members
 
-        void IXmlSerializable.WriteXml(System.Xml.XmlWriter writer)
+        void IXmlSerializable.WriteXml(XmlWriter writer)
         {
             //writer.WriteStartElement(DictionaryNodeName);
             foreach (KeyValuePair<TKey, TVal> kvp in this)
@@ -91,7 +92,7 @@ namespace MonAgendaWPF.Utils
             //writer.WriteEndElement();
         }
 
-        void IXmlSerializable.ReadXml(System.Xml.XmlReader reader)
+        void IXmlSerializable.ReadXml(XmlReader reader)
         {
             if (reader.IsEmptyElement)
             {
@@ -115,7 +116,7 @@ namespace MonAgendaWPF.Utils
                 TVal value = (TVal)ValueSerializer.Deserialize(reader);
                 reader.ReadEndElement();
                 reader.ReadEndElement();
-                this.Add(key, value);
+                Add(key, value);
                 reader.MoveToContent();
             }
             //reader.ReadEndElement();
@@ -123,7 +124,7 @@ namespace MonAgendaWPF.Utils
             reader.ReadEndElement(); // Read End Element to close Read of containing node
         }
 
-        System.Xml.Schema.XmlSchema IXmlSerializable.GetSchema()
+        XmlSchema IXmlSerializable.GetSchema()
         {
             return null;
         }

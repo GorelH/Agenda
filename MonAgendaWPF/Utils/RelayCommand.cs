@@ -23,12 +23,12 @@ namespace MonAgendaWPF.Utils
         {
             add
             {
-                if (this.canExecute != null)
+                if (canExecute != null)
                     CommandManager.RequerySuggested += value;
             }
             remove
             {
-                if (this.canExecute != null)
+                if (canExecute != null)
                     CommandManager.RequerySuggested -= value;
             }
         }
@@ -58,12 +58,12 @@ namespace MonAgendaWPF.Utils
 
         public void Execute(object parameter)
         {
-            this.execute();
+            execute();
         }
 
         public bool CanExecute(object parameter)
         {
-            return this.canExecute == null ? true : this.canExecute();
+            return canExecute == null ? true : canExecute();
         }
     }
 }

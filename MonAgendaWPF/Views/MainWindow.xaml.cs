@@ -1,27 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.ComponentModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using MonAgendaWPF.Utils;
 using MonAgendaWPF.Configuration;
 using MonAgendaWPF.Resources;
-using MonAgendaWPF.Views;
+using MonAgendaWPF.Utils;
 
-namespace MonAgendaWPF
+namespace MonAgendaWPF.Views
 {
     /// <summary>
     /// Logique d'interaction pour MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : AbstractWindow
+    public partial class MainWindow
     {
 
         public static UserConfiguration UserConfiguration = new UserConfiguration();
@@ -31,14 +20,14 @@ namespace MonAgendaWPF
             InitializeComponent();
         }
 
-        private void Window_Initialized(object sender, System.EventArgs e)
+        private void Window_Initialized(object sender, EventArgs e)
         {
             UserConfiguration = StorageUtil.Load(AppResources.CONFIGURATION_FILENAME);
-            WindowConfiguration wc = AbstractWindow.getWindowConfiguration(UserConfiguration, App._currentUser, this.ToString());
-            this.setWindowConfiguration(wc);
+            var wc = getWindowConfiguration(UserConfiguration, App._currentUser, ToString());
+            setWindowConfiguration(wc);
         }
 
-        private new void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private new void Window_Closing(object sender, CancelEventArgs e)
         {
             base.Window_Closing(sender, e);
         }
@@ -46,7 +35,7 @@ namespace MonAgendaWPF
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Events events = new Events();
-            WindowConfiguration wc = AbstractWindow.getWindowConfiguration(UserConfiguration, App._currentUser, events.ToString());
+            WindowConfiguration wc = getWindowConfiguration(UserConfiguration, App._currentUser, events.ToString());
             events.setWindowConfiguration(wc);
             events.ShowDialog();
         }
@@ -54,7 +43,7 @@ namespace MonAgendaWPF
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Locations locations = new Locations();
-            WindowConfiguration wc = AbstractWindow.getWindowConfiguration(UserConfiguration, App._currentUser, locations.ToString());
+            WindowConfiguration wc = getWindowConfiguration(UserConfiguration, App._currentUser, locations.ToString());
             locations.setWindowConfiguration(wc);
             locations.ShowDialog();
         }
@@ -62,7 +51,7 @@ namespace MonAgendaWPF
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             Artists artists = new Artists();
-            WindowConfiguration wc = AbstractWindow.getWindowConfiguration(UserConfiguration, App._currentUser, artists.ToString());
+            WindowConfiguration wc = getWindowConfiguration(UserConfiguration, App._currentUser, artists.ToString());
             artists.setWindowConfiguration(wc);
             artists.ShowDialog();
         }
@@ -70,7 +59,7 @@ namespace MonAgendaWPF
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             EventsForLocation eventsForLocation = new EventsForLocation();
-            WindowConfiguration wc = AbstractWindow.getWindowConfiguration(UserConfiguration, App._currentUser, eventsForLocation.ToString());
+            WindowConfiguration wc = getWindowConfiguration(UserConfiguration, App._currentUser, eventsForLocation.ToString());
             eventsForLocation.setWindowConfiguration(wc);
             eventsForLocation.ShowDialog();
         }
@@ -78,7 +67,7 @@ namespace MonAgendaWPF
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             EventManagement eventmanagement = new EventManagement();
-            WindowConfiguration wc = AbstractWindow.getWindowConfiguration(UserConfiguration, App._currentUser, eventmanagement.ToString());
+            WindowConfiguration wc = getWindowConfiguration(UserConfiguration, App._currentUser, eventmanagement.ToString());
             eventmanagement.setWindowConfiguration(wc);
             eventmanagement.ShowDialog();
         }

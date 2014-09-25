@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Threading;
 using BusinessLayer;
 
 namespace MonAgendaWPF
@@ -6,7 +7,7 @@ namespace MonAgendaWPF
     /// <summary>
     /// Logique d'interaction pour App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App
     {
         /// <summary>
         /// L'utilisateur courant.
@@ -20,8 +21,8 @@ namespace MonAgendaWPF
 
         public static BusinessManager BusinessManager
         {
-            get { return App._businessManager; }
-            set { App._businessManager = value; }
+            get { return _businessManager; }
+            set { _businessManager = value; }
         }
 
         protected override void OnStartup(StartupEventArgs e)
@@ -30,7 +31,7 @@ namespace MonAgendaWPF
             DispatcherUnhandledException += App_DispatcherUnhandledException;
         }
 
-        void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        static void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
             MessageBox.Show(e.Exception.Message);
             e.Handled = true;

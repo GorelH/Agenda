@@ -1,22 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using BusinessLayer;
 
-namespace MonAgendaWPF
+namespace MonAgendaWPF.Views
 {
     /// <summary>
     /// Logique d'interaction pour Login.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class Login
     {
         public Login()
         {
@@ -34,15 +26,13 @@ namespace MonAgendaWPF
 
         private void connect()
         {
-            MainWindow mainWindow;
-
-            if (App.BusinessManager.CheckUserConnection(loginTextBox.Text, BusinessLayer.SHA1Helper.HashData(passwordBox.Password)))
+            if (App.BusinessManager.CheckUserConnection(loginTextBox.Text, SHA1Helper.HashData(passwordBox.Password)))
             {
                 App._currentUser = loginTextBox.Text;
-                mainWindow = new MainWindow();
+                var mainWindow = new MainWindow();
                 mainWindow.Show();
                 errorLabel.Visibility = Visibility.Hidden;
-                this.Close();
+                Close();
             }
             else
                 errorLabel.Visibility = Visibility.Visible;

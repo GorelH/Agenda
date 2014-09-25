@@ -61,8 +61,8 @@ namespace MonAgendaWPF.ViewModel
                 if (_removeEventCommand == null)
                 {
                     _removeEventCommand = new RelayCommand(
-                        () => this.RemoveEvent(),
-                        () => this.CanRemoveEvent()
+                        () => RemoveEvent(),
+                        () => CanRemoveEvent()
                     );
                 }
                 return _removeEventCommand;
@@ -88,7 +88,7 @@ namespace MonAgendaWPF.ViewModel
                 if (_addEventCommand == null)
                 {
                     _addEventCommand = new RelayCommand(
-                        () => this.AddEvent()
+                        () => AddEvent()
                     );
                 }
                 return _addEventCommand;
@@ -111,7 +111,7 @@ namespace MonAgendaWPF.ViewModel
                 if (_validateEventCommand == null)
                 {
                     _validateEventCommand = new RelayCommand(
-                        this.ValidateEvent,
+                        ValidateEvent,
                         CanValidateEvent
                     );
                 }

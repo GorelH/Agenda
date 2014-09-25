@@ -102,11 +102,11 @@ namespace BusinessLayer
 #if DEBUG
             return true;
 #endif
-            bool value = false;
+            var value = false;
 
             try
             {
-                Utilisateur user = DALManager.GetUtilisateurByLogin(login);
+                var user = DALManager.GetUtilisateurByLogin(login);
 
                 if (user != null && user.Password == password)
                     value = true;

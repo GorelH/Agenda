@@ -26,11 +26,6 @@ namespace MonAgendaWPF.Configuration
         private Point position;
 
         /// <summary>
-        /// Constructeur par défaut.
-        /// </summary>
-        public WindowConfiguration() { }
-
-        /// <summary>
         /// Propriete Height
         /// </summary>
         public double Height

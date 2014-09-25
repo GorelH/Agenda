@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using EntitiesLayer;
+using MonAgendaWPF.Utils;
 
-namespace MonAgendaWPF
+namespace MonAgendaWPF.Views
 {
     /// <summary>
     /// Logique d'interaction pour EventsForLocation.xaml
@@ -31,7 +23,7 @@ namespace MonAgendaWPF
             EventsList.ItemsSource = App.BusinessManager.EvenementsPourLieu(((Lieu)LocationBox.SelectedItem).Nom);
         }
 
-        private new void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private new void Window_Closing(object sender, CancelEventArgs e)
         {
             base.Window_Closing(sender, e);
         }

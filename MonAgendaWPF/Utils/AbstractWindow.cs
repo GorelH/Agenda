@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.ComponentModel;
 using System.Windows;
 using MonAgendaWPF.Configuration;
-using MonAgendaWPF.Utils;
 using MonAgendaWPF.Resources;
+using MonAgendaWPF.Views;
 
-namespace MonAgendaWPF
+namespace MonAgendaWPF.Utils
 {
     public abstract class AbstractWindow : Window
     {
@@ -28,10 +27,10 @@ namespace MonAgendaWPF
         {
             if (wc != null)
             {
-                this.Width = wc.Width;
-                this.Height = wc.Height;
-                this.Left = wc.Position.X;
-                this.Top = wc.Position.Y;
+                Width = wc.Width;
+                Height = wc.Height;
+                Left = wc.Position.X;
+                Top = wc.Position.Y;
             }
             else
             {
@@ -39,9 +38,9 @@ namespace MonAgendaWPF
             }
         }
 
-        protected void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        protected void Window_Closing(object sender, CancelEventArgs e)
         {
-            WindowConfiguration ws = AbstractWindow.getWindowConfiguration(MainWindow.UserConfiguration, App._currentUser, sender.ToString());
+            WindowConfiguration ws = getWindowConfiguration(MainWindow.UserConfiguration, App._currentUser, sender.ToString());
             if (ws == null)
             {
                 ws = new WindowConfiguration();

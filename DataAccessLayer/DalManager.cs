@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using EntitiesLayer;
 using Commun;
 
 namespace DataAccessLayer
@@ -18,7 +15,7 @@ namespace DataAccessLayer
         /// <summary>
         /// Singleton Lock
         /// </summary>
-        private static object locker = new Object();
+        private static readonly object locker = new Object();
 
         /// <summary>
         /// 

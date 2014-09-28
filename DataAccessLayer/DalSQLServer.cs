@@ -456,7 +456,7 @@ namespace DataAccessLayer
             StringBuilder insertEvent = new StringBuilder();
 
             insertEvent.Append("insert into EVENTS");
-            insertEvent.Append(" values('").Append(element.MonEvenement.Guid.ToString()).Append("'");
+            insertEvent.Append(" values('").Append(element.MonEvenement.Guid).Append("'");
             insertEvent.Append(", '").Append(element.MonEvenement.Titre).Append("'");
             insertEvent.Append(", '").Append(element.MonEvenement.Description).Append("'");
             insertEvent.Append(", ").Append(element.MonEvenement.Tarif);
